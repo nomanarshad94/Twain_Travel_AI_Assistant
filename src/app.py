@@ -2,8 +2,8 @@ from flask import Flask, jsonify
 import logging
 from logging.handlers import RotatingFileHandler
 from src.config import LOG_FILE, LOG_LEVEL
-from src.app.utils.database import init_connection_pool, init_db
-from src.app.utils.constants import (
+from src.utils.database import init_connection_pool, init_db
+from src.utils.constants import (
     HTTP_NOT_FOUND,
     HTTP_INTERNAL_SERVER_ERROR,
     ERROR_INVALID_REQUEST
@@ -14,7 +14,7 @@ def setup_logging(app):
     """Setup logging configuration"""
     handler = RotatingFileHandler(LOG_FILE, maxBytes=10240000, backupCount=10)
     handler.setFormatter(logging.Formatter(
-        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(lineno)d]'
     ))
     handler.setLevel(getattr(logging, LOG_LEVEL))
     app.logger.addHandler(handler)
@@ -37,8 +37,8 @@ def create_app():
         app.logger.error(f"Failed to initialize database: {e}")
 
     # Register blueprints
-    from src.app.routes.chat_routes import chat_bp
-    from src.app.routes.main_routes import main_bp
+    from src.routes.chat_routes import chat_bp
+    from src.routes.main_routes import main_bp
 
     app.register_blueprint(main_bp)
     app.register_blueprint(chat_bp, url_prefix='/chat')

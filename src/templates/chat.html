@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Conversations</h3>
+            <button id="newChat" class="new-chat-btn btn btn-primary">
+                <span class="btn-icon">+</span>
+                <span class="btn-text">New Chat</span>
+            </button>
+        </div>
+        <div class="conversation-list-container">
+            <ul id="conversationList">
+                {% for conv in conversations %}
+                <li>
+                    <div class="conversation-row">
+                        <a href="{{ url_for('chat.chat_page', conversation_id=conv['id']) }}"
+                        class="conv-link"
+                        data-conv-id="{{ conv['id'] }}">
+                            <span class="conv-title">{{ conv['title'] or 'New Conversation' }}</span>
+                            <span class="conv-time">{{ conv['updated_at'].strftime('%Y-%m-%d %H:%M') if conv.get('updated_at') else '' }}</span>
+                        </a>
+                        <button class="delete-conv-btn" data-conv-id="{{ conv['id'] }}" title="Delete Conversation">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="chat-main">
+        <div class="chat-header">
+            <h2 id="chatTitle">Travel Advisor AI</h2>
+            <p class="chat-subtitle">Ask about Mark Twain's travels or get current weather information</p>
+        </div>
+
+        <div class="chat-history" id="chatHistory">
+            {% if not messages %}
+            <div class="welcome-message">
+                <h3>👋 Welcome to Travel Advisor AI!</h3>
+                <p>I can help you with:</p>
+                <ul>
+                    <li>📚 Questions about Mark Twain's "The Innocents Abroad"</li>
+                    <li>🌤️ Current weather information for any city</li>
+                    <li>🗺️ Combined insights - places Twain visited + their current weather</li>
+                </ul>
+                <p class="example-queries">Try asking:</p>
+                <div class="example-buttons">
+                    <button class="example-btn" data-query="What did Mark Twain think about the Sphinx?">
+                        What did Twain think about the Sphinx?
+                    </button>
+                    <button class="example-btn" data-query="What's the current weather in Paris?">
+                        Weather in Paris?
+                    </button>
+                    <button class="example-btn" data-query="I want to visit places Twain went in Italy - what's the weather like?">
+                        Twain's Italy + weather
+                    </button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="chat-input-container">
+            <div class="chat-input">
+                <input type="text"
+                       id="userInput"
+                       placeholder="Ask about Twain's travels or weather..."
+                       autocomplete="off">
+                <button id="sendButton" class="btn btn-primary">
+                    <span class="button-text">Send</span>
+                    <span class="spinner hidden"></span>
+                </button>
+            </div>
+            <div id="errorMessage" class="error-message hidden"></div>
+        </div>
+    </div>
+</div>
+
+<div id="currentConversation" data-conversation-id="{{ current_conversation_id or '' }}"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}
