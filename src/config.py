@@ -43,11 +43,13 @@ OPENWEATHER_GEO_URL = "https://api.openweathermap.org/geo/1.0/direct"
 
 # Embedding Configuration (Azure OpenAI Embeddings)
 EMBEDDING_MODEL_NAME = os.getenv('EMBEDDING_MODEL_NAME')
+EMBEDDING_MODEL_DEVICE = os.getenv('EMBEDDING_MODEL_DEVICE', 'cpu')
 FAISS_INDEX_PATH = DATA_DIR / "faiss_index"
 
 # Agent Configuration
 AGENT_RECURSION_LIMIT = int(os.getenv('AGENT_RECURSION_LIMIT', '10'))
 AGENT_MAX_RETRIES = int(os.getenv('AGENT_MAX_RETRIES', '3'))
+TOP_K_RESULTS = int(os.getenv('TOP_K_RESULTS', '5'))
 
 # Logging
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
