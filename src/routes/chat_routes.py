@@ -79,17 +79,15 @@ def send_message():
         # Save user message
         chat_service.add_message(conversation_id, message, is_user=True)
 
-        # Get agent response
+        # Get agent response collectively as a single string
         try:
-            response = ""
-            for chunk in agent_runner.run(
+            response = agent_runner.run(
                 message,
                 config={
                     "configurable": {"conversation_history": conversation_history},
                     "recursion_limit": AGENT_RECURSION_LIMIT
                 }
-            ):
-                response += chunk
+            )
 
             if not response:
                 response = AGENT_ERROR_RESPONSE
