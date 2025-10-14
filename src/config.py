@@ -39,6 +39,7 @@ AZURE_OPENAI_TEMPERATURE = float(os.getenv('OPENAI_TEMPERATURE'))
 # OpenWeatherMap Configuration
 OPENWEATHER_API_KEY = os.getenv('OPENWEATHERMAP_API_KEY')
 OPENWEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
+OPENWEATHER_GEO_URL = "https://api.openweathermap.org/geo/1.0/direct"
 
 # Embedding Configuration (Azure OpenAI Embeddings)
 EMBEDDING_MODEL_NAME = os.getenv('EMBEDDING_MODEL_NAME')
