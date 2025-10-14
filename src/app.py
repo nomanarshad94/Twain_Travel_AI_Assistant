@@ -14,7 +14,7 @@ def setup_logging(app):
     """Setup logging configuration"""
     handler = RotatingFileHandler(LOG_FILE, maxBytes=10240000, backupCount=10)
     handler.setFormatter(logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(lineno)d]'
+        '%(asctime)s - %(name)s [line:%(lineno)d]- %(levelname)s - %(message)s'
     ))
     handler.setLevel(getattr(logging, LOG_LEVEL))
     app.logger.addHandler(handler)

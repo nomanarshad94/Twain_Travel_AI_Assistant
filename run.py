@@ -9,7 +9,7 @@ import logging
 
 logging.basicConfig(
     level=getattr(logging, LOG_LEVEL),
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(lineno)d]'
+    format='%(asctime)s - %(name)s [line:%(lineno)d] - %(levelname)s - %(message)s'
 )
 
 app = create_app()
