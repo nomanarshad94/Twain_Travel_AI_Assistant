@@ -32,7 +32,7 @@ MSG_AGENT_ERROR = "Error processing request with agent"
 MSG_INVALID_CONVERSATION_ID = "Invalid conversation ID format"
 
 # Application Constants
-DEFAULT_CONVERSATION_TITLE_LENGTH = 35
+DEFAULT_CONVERSATION_TITLE_LENGTH = 32
 DEFAULT_RECURSION_LIMIT = 10
 
 # Agent Response Messages

@@ -130,11 +130,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function formatMessage(content) {
         // Basic markdown formatting
-        return content
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\n\n/g, '<br><br>')
-            .replace(/\n/g, '<br>')
-            .replace(/\[([^\]]+)\]/g, '<span class="chapter-ref">$1</span>');
+        let formatted = content;
+
+        // Convert markdown headers (must be done before line break replacements)
+        formatted = formatted.replace(/^#### (.*?)$/gm, '<h4>$1</h4>');
+        formatted = formatted.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
+        formatted = formatted.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
+        formatted = formatted.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
+
+        // Convert bold text
+        formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+        // Convert bullet points
+        formatted = formatted.replace(/^- (.*?)$/gm, '<li>$1</li>');
+        formatted = formatted.replace(/(<li>.*?<\/li>\n?)+/g, '<ul>$&</ul>');
+
+        // Convert numbered lists
+        formatted = formatted.replace(/^\d+\. (.*?)$/gm, '<li>$1</li>');
+
+        // Convert chapter references
+        formatted = formatted.replace(/\[([^\]]+)\]/g, '<span class="chapter-ref">$1</span>');
+
+        // Convert line breaks (do this last)
+        formatted = formatted.replace(/\n\n/g, '<br><br>');
+        formatted = formatted.replace(/\n/g, '<br>');
+
+        return formatted;
     }
 
     async function sendMessage() {
