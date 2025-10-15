@@ -27,4 +27,4 @@ RUN mkdir -p /travel_assistant/data/faiss_index
 EXPOSE 5000
 
 # Run the application with gunicorn
-CMD ["gunicorn", "--workers", "1", "--bind", "0.0.0.0:5000", "--timeout", "60", "--log-level", "info", "--keep-alive", "60",  "run:app"]
+CMD ["gunicorn", "--workers", "1", "--bind", "0.0.0.0:${PORT}", "--timeout", "60", "--log-level", "info", "--keep-alive", "60",  "run:app"]
