@@ -21,7 +21,7 @@ class WeatherService:
 
     def get_coordinates(self, location: str, limit: int = 1) -> Optional[Tuple[float, float, str, str]]:
         """
-        Get coordinates for a location using OpenWeatherMap Geocoding API
+        Get coordinates for a location using OpenWeatherMap Geocoding API.
 
         Args:
             location: City name (e.g., "Paris", "London", "New York")
@@ -78,7 +78,7 @@ class WeatherService:
             params = {
                 'q': location,
                 'appid': self.api_key,
-                'units': units
+                'units': units.lower()
             }
 
             response = requests.get(self.base_url, params=params, timeout=10)
@@ -210,19 +210,3 @@ class WeatherService:
         )
 
         return response
-
-    def get_weather_for_multiple_locations(self, locations: list[str]) -> Dict[str, Optional[Dict]]:
-        """
-        Get weather for multiple locations
-
-        Args:
-            locations: List of city names
-
-        Returns:
-            Dictionary mapping location names to weather info
-        """
-        results = {}
-        for location in locations:
-            results[location] = self.get_weather(location)
-
-        return results

@@ -1,5 +1,5 @@
 """
-Constants for the Application
+Constants for the Travel Application
 Including HTTP status codes, error codes, and application-level constants
 """
 
@@ -33,7 +33,6 @@ MSG_INVALID_CONVERSATION_ID = "Invalid conversation ID format"
 
 # Application Constants
 DEFAULT_CONVERSATION_TITLE_LENGTH = 35
-MAX_MESSAGE_LENGTH = 1000
 DEFAULT_RECURSION_LIMIT = 10
 
 # Agent Response Messages
@@ -41,6 +40,3 @@ AGENT_ERROR_RESPONSE = "I apologize, but I encountered an error while processing
 AGENT_OUT_OF_DOMAIN_RESPONSE = "I specialize in Mark Twain's 'The Innocents Abroad' and/or current weather " \
                                "information. I cannot answer questions outside this scope. "
 
-# Database Constants
-DB_POOL_MIN_CONNECTIONS = 1
-DB_POOL_MAX_CONNECTIONS = 4

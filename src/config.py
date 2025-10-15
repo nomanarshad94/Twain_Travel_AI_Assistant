@@ -17,17 +17,14 @@ BOOK_PROCESSED_PATH = DATA_DIR / "innocents_abroad_chunks.json"
 # Project Gutenberg URL for "The Innocents Abroad"
 INNOCENTS_ABROAD_URL = "https://www.gutenberg.org/cache/epub/3176/pg3176.txt"
 
-# LangChain Text Splitter Configuration
-LANGCHAIN_CHUNK_SIZE = 1000
-LANGCHAIN_CHUNK_OVERLAP = 200
-LANGCHAIN_SEPARATOR = "\n\n"
-
 # PostgreSQL Database Configuration
 DB_HOST = os.getenv('DB_HOST', 'localhost')
 DB_PORT = os.getenv('DB_PORT', '5432')
 DB_NAME = os.getenv('DB_NAME', 'travel_advisor_db')
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_POOL_MIN_CONNECTIONS = int(os.getenv('DB_POOL_MIN_CONNECTIONS', 1))
+DB_POOL_MAX_CONNECTIONS = int(os.getenv('DB_POOL_MAX_CONNECTIONS', 4))
 
 # Azure OpenAI Configuration
 AZURE_OPENAI_API_KEY = os.getenv('AZURE_OPENAI_API_KEY')
@@ -50,6 +47,10 @@ FAISS_INDEX_PATH = DATA_DIR / "faiss_index"
 AGENT_RECURSION_LIMIT = int(os.getenv('AGENT_RECURSION_LIMIT', '10'))
 AGENT_MAX_RETRIES = int(os.getenv('AGENT_MAX_RETRIES', '3'))
 TOP_K_RESULTS = int(os.getenv('TOP_K_RESULTS', '5'))
+
+# LangChain Text Splitter Configuration
+LANGCHAIN_CHUNK_SIZE = 1000
+LANGCHAIN_CHUNK_OVERLAP = 200
 
 # Logging
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')

@@ -4,17 +4,14 @@ import json
 import logging
 from pathlib import Path
 from typing import Optional, List, Dict
-
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
 from ..config import (
     INNOCENTS_ABROAD_URL,
     BOOK_RAW_PATH,
     BOOK_CLEAN_PATH,
     BOOK_PROCESSED_PATH,
     LANGCHAIN_CHUNK_SIZE,
-    LANGCHAIN_CHUNK_OVERLAP,
-    LANGCHAIN_SEPARATOR
+    LANGCHAIN_CHUNK_OVERLAP
 )
 
 logger = logging.getLogger(__name__)
@@ -147,7 +144,7 @@ class GutenbergDownloader:
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=LANGCHAIN_CHUNK_SIZE,
             chunk_overlap=LANGCHAIN_CHUNK_OVERLAP,
-            separators=[LANGCHAIN_SEPARATOR, "\n", " ", ""],
+            separators=["\n\n", "\n", " ", ""],
             keep_separator=True
         )
 
