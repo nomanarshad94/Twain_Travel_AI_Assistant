@@ -77,7 +77,7 @@ workflow.add_conditional_edges(
 workflow.add_edge("tools", "agent")
 
 # Compile the graph
-app_agent = workflow.compile(debug=False)
+app_agent = workflow.compile()
 
 logger.info("Travel Agent LangGraph workflow compiled successfully")
 
