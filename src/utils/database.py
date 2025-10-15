@@ -1,7 +1,6 @@
 import psycopg2
 from psycopg2 import pool
-from src.config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
-from src.utils.constants import DB_POOL_MIN_CONNECTIONS, DB_POOL_MAX_CONNECTIONS
+from src.config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, DB_POOL_MIN_CONNECTIONS, DB_POOL_MAX_CONNECTIONS
 import logging
 
 logger = logging.getLogger(__name__)
