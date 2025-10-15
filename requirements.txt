@@ -1,3 +1,7 @@
+# Force CPU-only PyTorch install
+torch==2.3.1+cpu
+torchvision==0.18.1+cpu
+--extra-index-url https://download.pytorch.org/whl/cpu
 flask==3.1.0
 flask-cors==4.0.0
 gunicorn==23.0.0
@@ -16,3 +20,4 @@ huggingface_hub[hf_xet]
 openai==1.45.0
 tiktoken==0.7.0
 pydantic==2.9.2
+pytest==7.4.0
