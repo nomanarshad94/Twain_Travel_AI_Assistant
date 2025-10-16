@@ -11,11 +11,11 @@ WORKDIR /travel_assistant
 RUN mkdir -p /travel_assistant/logs && chmod 777 /travel_assistant/logs
 
 # Install pip and enable cache
-RUN --mount=type=cache,target=/root/.cache/pip pip install --upgrade pip
+RUN pip install --upgrade pip
 
 # Copy requirements and install dependencies
 COPY requirements.txt /travel_assistant/
-RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy project files
 COPY . /travel_assistant/
@@ -27,4 +27,4 @@ RUN mkdir -p /travel_assistant/data/faiss_index
 EXPOSE 5000
 
 # Run the application with gunicorn
-CMD ["gunicorn", "--workers", "1", "--bind", "0.0.0.0:5000", "--timeout", "60", "--log-level", "info", "--keep-alive", "60",  "run:app"]
+CMD ["gunicorn", "--workers", "2", "--bind", "0.0.0.0:5000", "--timeout", "60", "--log-level", "info", "--keep-alive", "60",  "run:app"]
